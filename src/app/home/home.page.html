@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      House Price Estimator
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="address" (ngSubmit)="estimate()">
+    <ion-item>
+      <ion-label>Post Code</ion-label>
+      <ion-input type="text" formControlName="postcode"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Street</ion-label>
+      <ion-input formControlName="street"></ion-input>
+    </ion-item>
+    <ion-button type="submit" size="large">Submit</ion-button>
+  </form>
+  <ion-progress-bar hidden="true" type="indeterminate" ></ion-progress-bar>
+  <ion-list>
+    <ion-list-header>
+      <ion-label>Results</ion-label>
+    </ion-list-header>
+    <ion-item *ngFor="let result of results">
+      <ion-label position="stacked">Post Code: {{result.postcode}}</ion-label>
+      <ion-label position="stacked">Street: {{result.street}}</ion-label>
+      <ion-label position="stacked">Price: {{result.price}}</ion-label>
+      <ion-label position="stacked">Sales: {{result.number}}</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

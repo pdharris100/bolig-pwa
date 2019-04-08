@@ -1,0 +1,7 @@
+{
+  "name": "bolig-pwa",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
