@@ -1,6 +1,7 @@
-import { FormBuilder, FormGroup } from '@angular/forms';
 import { Component } from '@angular/core';
 import { RestService } from '../rest.service'; 
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -14,9 +15,9 @@ export class HomePage {
   response: any
   price: any
   number: any
-  processing: boolean = false
+  processing: boolean = false;
 
-  constructor (public estimatorService: RestService, private formBuilder: FormBuilder){
+  constructor (public estimatorService: RestService, private formBuilder: FormBuilder, public loadingController: LoadingController){
     this.address = this.formBuilder.group({
       postcode: [''],
       street: [''],
@@ -30,11 +31,11 @@ export class HomePage {
       this.number = this.response.numberOfSales;
       this.price = this.response.price;
       this.results = [new Result(this.address.value.postcode, this.address.value.street, this.response.price, this.response.numberOfSales)].concat(this.results);
+      this.processing=false;
       console.log(this.response);
     });
-    this.processing=false;
+    
   }
-
 }
 
 class Result {

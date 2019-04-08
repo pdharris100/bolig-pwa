@@ -16,9 +16,22 @@
       <ion-label>Street</ion-label>
       <ion-input formControlName="street"></ion-input>
     </ion-item>
-    <ion-button type="submit" size="large">Submit</ion-button>
+    
+    <br>
+
+    <ion-button type="submit" expand="block" size="large">Get Price Estimate</ion-button>
   </form>
-  <ion-progress-bar hidden="true" type="indeterminate" ></ion-progress-bar>
+
+  <br>
+
+  <div *ngIf="processing">
+      <ion-progress-bar type="indeterminate"></ion-progress-bar>
+  </div>
+
+  <div *ngIf="!processing">
+      <ion-progress-bar></ion-progress-bar>
+  </div>
+
   <ion-list>
     <ion-list-header>
       <ion-label>Results</ion-label>
