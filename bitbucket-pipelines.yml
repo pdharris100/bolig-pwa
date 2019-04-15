@@ -13,5 +13,5 @@ pipelines:
         deployment: production
         script: # Modify the commands below to build your repository.
           - npm install
-          - npm run build
+          - npm run pwa
           - npm run deploy
