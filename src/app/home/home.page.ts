@@ -10,7 +10,7 @@ import { LoadingController } from '@ionic/angular';
 })
 export class HomePage {
 
-  private address: FormGroup;
+  address: FormGroup;
   results: Array<Result> = []
   response: any
   price: any
