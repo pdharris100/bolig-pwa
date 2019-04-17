@@ -1,27 +1,30 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>
+  <ion-toolbar color="primary">
+    <ion-title class="title">
       House Price Estimator
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <div style="width:500px; margin:0 auto;">
   <form [formGroup]="address" (ngSubmit)="estimate()">
+    <br>
     <ion-item lines="none">
       <ion-label position="stacked"><b>Post Code</b></ion-label>
-      <ion-input type="text" inputmode="numeric" maxlength=4 minlength=4 placeholder="Enter Post Code" required=true formControlName="postcode"></ion-input>
+      <ion-input class="input" type="text" inputmode="numeric" maxlength=4 minlength=4 required=true formControlName="postcode"></ion-input>
     </ion-item>
     <ion-item lines="none">
       <ion-label position="stacked"><b>Street</b></ion-label>
-      <ion-input type="text" placeholder="Enter Street" required=true formControlName="street"></ion-input>
+      <ion-input class="input" type="text" required=true formControlName="street"></ion-input>
     </ion-item>
     
     <br>
-
-    <button class="button" type="submit">
+    <div class="buttonHolder">
+      <button class="button" type="submit">
       <img src="../../assets/icon/calc.png" height="100%" />
-    </button>
+      </button>
+    </div>
   </form>
 
   <br>
@@ -46,4 +49,5 @@
       <br>
     </ion-item>
   </ion-list>
+</div>
 </ion-content>

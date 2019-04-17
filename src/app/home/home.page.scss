@@ -1,8 +1,17 @@
+.title{
+    text-align: center
+}
+
 .button {
     background-color: white;
     border-radius: 50%;
     cursor: pointer;
   }
+
+  .buttonHolder {
+    text-align: center;
+  }
+
 
 .input {
     border: 1px solid #ccc;
