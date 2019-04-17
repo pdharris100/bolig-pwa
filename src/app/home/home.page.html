@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="primary">
+  <ion-toolbar color="secondary">
     <ion-title class="title">
       House Price Estimator
     </ion-title>
@@ -7,7 +7,7 @@
 </ion-header>
 
 <ion-content>
-  <div style="width:500px; margin:0 auto;">
+  <div class="main">
   <form [formGroup]="address" (ngSubmit)="estimate()">
     <br>
     <ion-item lines="none">
@@ -16,7 +16,7 @@
     </ion-item>
     <ion-item lines="none">
       <ion-label position="stacked"><b>Street</b></ion-label>
-      <ion-input class="input" type="text" required=true formControlName="street"></ion-input>
+      <ion-input class="input" type="text" autocapitalize="words" required=true formControlName="street"></ion-input>
     </ion-item>
     
     <br>
@@ -30,7 +30,7 @@
   <br>
 
   <div *ngIf="processing">
-      <ion-progress-bar type="indeterminate"></ion-progress-bar>
+      <ion-progress-bar type="indeterminate" color="secondary"></ion-progress-bar>
   </div>
 
   <div *ngIf="!processing">
