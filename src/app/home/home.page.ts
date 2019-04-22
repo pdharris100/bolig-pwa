@@ -26,6 +26,13 @@ export class HomePage {
 
   estimate() {
     this.processing=true;
+
+    if (document.getElementById('img').className == 'img1') {
+      document.getElementById('img').className = 'img2' ;
+    } else {
+      document.getElementById('img').className = 'img1'; 
+    }
+
     this.estimatorService.estimate(this.address.value.postcode, this.address.value.street).then(data => {
       this.response = data;
       this.number = this.response.numberOfSales;

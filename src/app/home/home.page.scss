@@ -13,10 +13,55 @@
     cursor: pointer;
   }
 
+  .button:focus{
+    outline:0;
+   }
+
+   .img1 {
+    -webkit-animation-name: cssAnimation1;
+    -webkit-animation-duration:2s;
+    animation-name: cssAnimation1;
+    animation-duration: 2s;
+  }
+
+  .img2 {
+    -webkit-animation-name: cssAnimation2;
+    -webkit-animation-duration:2s;
+    animation-name: cssAnimation2;
+    animation-duration: 2s;
+  }
+
+  @-webkit-keyframes cssAnimation1 {
+    from {
+      -webkit-transform: rotate(0deg);
+    }
+    to {
+      -webkit-transform: rotate(360deg);
+    }
+  }
+
+  @-webkit-keyframes cssAnimation2 {
+    from {
+      -webkit-transform: rotate(0deg);
+    }
+    to {
+      -webkit-transform: rotate(360deg);
+    }
+  }
+
+  @keyframes cssAnimation1 {
+      0% {transform: rotate(0deg);}
+    100% {transform: rotate(360deg);}
+  }
+
+  @keyframes cssAnimation2 {
+    0% {transform: rotate(0deg);}
+  100% {transform: rotate(360deg);}
+}
+
   .buttonHolder {
     text-align: center;
   }
-
 
 .input {
     border: 1px solid #ccc;
