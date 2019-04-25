@@ -6,8 +6,8 @@ import { Injectable } from '@angular/core';
 })
 export class RestService {
 
-  url = 'https://estimatorservice.azurewebsites.net/estimate';
-  //url = 'http://localhost:8081/estimate';
+ // url = 'https://estimatorservice.azurewebsites.net/estimate';
+  url = 'http://localhost:8081/estimate';
   constructor(public http: HttpClient) { }
 
   estimate(postcode: string, street: string){
