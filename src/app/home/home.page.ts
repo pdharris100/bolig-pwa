@@ -36,16 +36,24 @@ export class HomePage {
 
     this.estimatorService.estimate(this.address.value.postcode, this.address.value.street).then(data => {
       this.response = data;
-      this.number = this.response.numberOfSales;
+      this.number = this.response.salesHistory.length;
       this.price = this.response.price;
       //this.results = [new Result(this.address.value.postcode, this.address.value.street, this.response.price, this.response.numberOfSales)].concat(this.results);
-      this.results = [new Result(this.address.value.postcode, this.address.value.street, this.response.price, this.response.numberOfSales)];
+      this.results = [new Result(this.address.value.postcode, this.address.value.street, this.response.price, this.response.salesHistory.length)];
 
       var chart = new Chart(document.getElementById('scatter'), {
-        type: 'scatter',
+        type: 'line',
         data: {
           datasets: [{
+            type: 'line',
+            fill: false,
+            data: getData(this.response.trend),
+            backgroundColor: "rgba(218,83,79, .7)",
+            borderColor: "rgba(218,83,79, .7)",
+          },
+          {
             type: 'scatter',
+            fill: false,
             data: getData(this.response.salesHistory),
             backgroundColor: "rgba(93,188,210, .7)",
             borderColor: "transparent"
@@ -75,10 +83,10 @@ export class HomePage {
   }
 }
 
-function getData(response: any) {
+function getData(salesHistory: any) {
   var result = [];
-  for (let index = 0; index < response[0].length; index++) {
-    var element = { x: response[0][index], y: response[1][index] };
+  for (let index = 0; index < salesHistory.length; index++) {
+    var element = { x: salesHistory[index][0], y: salesHistory[index][1] };
     result.push(element);
   }
   return result;
