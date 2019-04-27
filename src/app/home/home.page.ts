@@ -12,10 +12,10 @@ import { Chart } from 'chart.js';
 export class HomePage {
 
   address: FormGroup;
-  results: Array<Result> = []
-  response: any
-  price: any
-  number: any
+  results: Array<Result> = [];
+  response: any;
+  price: any = '0';
+  number: any;
   processing: boolean = false;
 
   constructor(public estimatorService: RestService, private formBuilder: FormBuilder, public loadingController: LoadingController) {
@@ -28,11 +28,11 @@ export class HomePage {
   estimate() {
     this.processing = true;
 
-    if (document.getElementById('img').className == 'img1') {
+/*     if (document.getElementById('img').className == 'img1') {
       document.getElementById('img').className = 'img2';
     } else {
       document.getElementById('img').className = 'img1';
-    }
+    } */
 
     this.estimatorService.estimate(this.address.value.postcode, this.address.value.street).then(data => {
       this.response = data;
@@ -55,7 +55,7 @@ export class HomePage {
             type: 'scatter',
             fill: false,
             data: getData(this.response.salesHistory),
-            backgroundColor: "rgba(93,188,210, .7)",
+            backgroundColor: "rgba(56, 128, 255, .7)",
             borderColor: "transparent"
           }]
         },
@@ -69,6 +69,7 @@ export class HomePage {
               position: 'bottom',
               time: {
                 unit: 'year',
+                stepSize: 2,
                 max: new Date().getTime()
               }             
             }]

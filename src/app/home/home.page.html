@@ -1,6 +1,6 @@
 <ion-header>
-  <ion-toolbar color="secondary">
-    <ion-title class="title">
+  <ion-toolbar color="primary">
+    <ion-title>
       House Price Estimator
     </ion-title>
   </ion-toolbar>
@@ -8,36 +8,62 @@
 
 <ion-content>
   <div class="main">
-  <form [formGroup]="address" (ngSubmit)="estimate()">
-    <br>
-    <ion-item lines="none">
-      <ion-label position="stacked"><b>Post Code</b></ion-label>
-      <ion-input class="input" type="text" inputmode="numeric" maxlength=4 minlength=4 required=true formControlName="postcode"></ion-input>
-    </ion-item>
-    <ion-item lines="none">
-      <ion-label position="stacked"><b>Street</b></ion-label>
-      <ion-input class="input" type="text" autocapitalize="words" required=true formControlName="street"></ion-input>
-    </ion-item>
-    
-    <br>
-    <div class="buttonHolder">
+    <form [formGroup]="address" (ngSubmit)="estimate()">
+      <br>
+      <ion-item lines="none">
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <ion-label position="stacked"><b>Post Code</b></ion-label>
+              <ion-input placeholder="E.g. 1257" type="text" inputmode="numeric" maxlength=4 minlength=4 required=true
+                formControlName="postcode"></ion-input>
+            </ion-col>
+            <ion-col>
+              <ion-label position="stacked"><b>Size in m<sup>2</sup></b> (Optional)</ion-label>
+              <ion-input placeholder="Not enabled" disabled type="text" autocapitalize="words" required=true formControlName="street">
+              </ion-input>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-label position="stacked"><b>Street</b></ion-label>
+              <ion-input placeholder="E.g. Amaliegade" type="text" autocapitalize="words" required=true
+                formControlName="street"></ion-input>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+            <ion-button size="large" expand="block" type="submit">
+              <ion-icon slot="start" name="refresh-circle"></ion-icon>
+              Estimate
+            </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+
+      <!--     <div class="buttonHolder">
       <button class="button button-img" type="submit">
       <img id="img" src="../../assets/icon/calc.png" height="100%" />
       </button>
+    </div> -->
+    </form>
+
+    <div *ngIf="processing">
+      <ion-progress-bar type="indeterminate" color="primary"></ion-progress-bar>
     </div>
-  </form>
 
-  <br>
-
-  <div *ngIf="processing">
-      <ion-progress-bar type="indeterminate" color="secondary"></ion-progress-bar>
-  </div>
-
-  <div *ngIf="!processing">
+    <div *ngIf="!processing">
       <ion-progress-bar></ion-progress-bar>
-  </div>
+    </div>
 
-  <ion-list>
+    <br>
+    <ion-text color="primary">
+      <h1><b>{{price}} kr/m<sup>2</sup></b></h1>
+    </ion-text>
+    <br>
+
+    <!-- <ion-list>
     <ion-list-header>
       <ion-label><b>Results</b></ion-label>
     </ion-list-header>
@@ -48,11 +74,26 @@
       <ion-label position="stacked">Sales: {{result.number}}</ion-label>
       <br>
     </ion-item>
-  </ion-list>
+  </ion-list> -->
 
-  <div>
-  <canvas id="scatter"></canvas>
-  </div>
+   <canvas id="scatter"></canvas>
   
-</div>
+
+  </div>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar color="primary">
+      <ion-buttons slot="secondary">
+          <ion-button>
+            <ion-icon color="primary" name="home"></ion-icon>
+          </ion-button>
+          <ion-button>
+            <ion-icon color="primary" name="clock"></ion-icon>
+          </ion-button>
+          <ion-button>
+              <ion-icon color="primary" name="information-circle"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+  </ion-toolbar>
+</ion-footer>
