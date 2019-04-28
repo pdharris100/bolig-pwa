@@ -27,6 +27,8 @@ export class HomePage {
 
   estimate() {
     this.processing = true;
+    var st: string = this.address.value.street;
+    st = st.trim();
 
     /*     if (document.getElementById('img').className == 'img1') {
           document.getElementById('img').className = 'img2';
@@ -34,8 +36,8 @@ export class HomePage {
           document.getElementById('img').className = 'img1';
         } */
 
-    try {
-      this.estimatorService.estimate(this.address.value.postcode, this.address.value.street).then(data => {
+    try {      
+      this.estimatorService.estimate(this.address.value.postcode, capitalise(st)).then(data => {
       this.response = data;
       this.pricePerUnitArea = this.response.price;
 
@@ -90,12 +92,24 @@ export class HomePage {
         }
       })
       console.log(this.response);
+      this.processing = false;
     })
-  } finally {
+  } catch (err) {
     this.processing = false;
   }
 
   }
+}
+
+function capitalise(str) 
+{
+    str = str.split(" ");
+
+    for (var i = 0, x = str.length; i < x; i++) {
+        str[i] = str[i][0].toUpperCase() + str[i].substr(1);
+    }
+
+    return str.join(" ");
 }
 
 function enrichData(salesHistory: any) {
