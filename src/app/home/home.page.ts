@@ -34,7 +34,8 @@ export class HomePage {
           document.getElementById('img').className = 'img1';
         } */
 
-    this.estimatorService.estimate(this.address.value.postcode, this.address.value.street).then(data => {
+    try {
+      this.estimatorService.estimate(this.address.value.postcode, this.address.value.street).then(data => {
       this.response = data;
       this.pricePerUnitArea = this.response.price;
 
@@ -88,10 +89,11 @@ export class HomePage {
           }
         }
       })
-
-      this.processing = false;
       console.log(this.response);
-    });
+    })
+  } finally {
+    this.processing = false;
+  }
 
   }
 }

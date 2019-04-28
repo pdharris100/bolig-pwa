@@ -64,14 +64,12 @@
     <div *ngIf="!processing">
       <ion-progress-bar></ion-progress-bar>
     </div>
-
     
     <ion-text color="primary">
       <h1 *ngIf="address.value.area==''"><b>{{pricePerUnitArea.toLocaleString()}} kr/m<sup>2</sup></b></h1>
       <h1 *ngIf="address.value.area!=''"><b>{{(pricePerUnitArea*address.value.area).toLocaleString()}} kr</b></h1>
     </ion-text>
     
-
     <canvas id="scatter"></canvas>
 
 
