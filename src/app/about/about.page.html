@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>About</ion-title>
+    <ion-buttons slot="start">
+      <ion-button [routerLink]="['/home']">
+        <ion-icon slot="icon-only" color="light" size="large" name="home"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button [routerLink]="['/about']">
+        <ion-icon slot="icon-only" color="light" size="large" name="information-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="main">
+    <ion-text>
+      <p>
+        The House Price Estimator uses statistical analysis of historical sales prices to
+        estimate the current price per square metre of apartments on a given street.
+      </p>
+      <p>
+        If the size of an apartment is also given, then an estimated price for such an apartment is displayed instead.
+      </p>
+      <p>
+        The scatter plot shows the price per square metre of historical sales on the street, and the line shows the
+        calculated trend.
+      </p>
+      <p>
+        The estimates are just an indication.  Use them at your own risk.
+      </p>
+    </ion-text>
+  </div>
+</ion-content>

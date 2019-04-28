@@ -1,13 +1,14 @@
-<ion-header class="header">
+<ion-header>
   <ion-toolbar color="primary">
-    <ion-buttons slot="secondary">
-      <ion-button>
-        <ion-icon color="primary" name="home"></ion-icon>
+    <ion-title>Home</ion-title>
+    <ion-buttons slot="start">
+      <ion-button [routerLink]="['/home']">
+        <ion-icon slot="icon-only" color="light" size="large" name="home"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-buttons slot="primary">
-      <ion-button>
-        <ion-icon color="primary" name="information-circle-outline"></ion-icon>
+    <ion-buttons slot="end">
+      <ion-button [routerLink]="['/about']">
+        <ion-icon slot="icon-only" color="light" size="large" name="information-circle-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
