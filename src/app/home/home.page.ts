@@ -23,6 +23,7 @@ export class HomePage {
       area: [''],
       street: ['']
     });
+    //this.generateChart();
   }
 
   estimate() {
@@ -36,81 +37,90 @@ export class HomePage {
           document.getElementById('img').className = 'img1';
         } */
 
-    try {      
+    try {
       this.estimatorService.estimate(this.address.value.postcode, capitalise(st)).then(data => {
-      this.response = data;
-      this.pricePerUnitArea = this.response.price;
-
-      if (this.chart != null) {
-        this.chart.destroy()
-      }
-
-      this.chart = new Chart(document.getElementById('scatter'), {
-        type: 'line',
-        data: {
-          datasets: [{
-            type: 'line',
-            fill: false,
-            data: enrichData(this.response.trend),
-            backgroundColor: "rgba(218,83,79, .7)",
-            borderColor: "rgba(218,83,79, .7)",
-          },
-          {
-            type: 'scatter',
-            fill: false,
-            data: enrichData(this.response.salesHistory),
-            backgroundColor: "rgba(56, 128, 255, .7)",
-            borderColor: "transparent"
-          }]
-        },
-        options: {
-          legend: {
-            display: false
-          },
-          scales: {
-            yAxes: [{
-              ticks: {
-                callback: function (value: number, index, values) {
-                  return value.toLocaleString();
-                }
-              },
-              scaleLabel: {
-                display: true,
-                labelString: 'kr/m2',
-                padding: 0
-              }
-            }],
-            xAxes: [{
-              type: 'time',
-              position: 'bottom',
-              time: {
-                unit: 'year',
-                stepSize: 2,
-                max: new Date().getTime()
-              }
-            }]
-          }
-        }
+        this.response = data;
+        this.pricePerUnitArea = this.response.price;
+        this.generateChart();
+        console.log(this.response);
+        this.processing = false;
       })
-      console.log(this.response);
+    } catch (err) {
       this.processing = false;
-    })
-  } catch (err) {
-    this.processing = false;
-  }
-
-  }
-}
-
-function capitalise(str) 
-{
-    str = str.split(" ");
-
-    for (var i = 0, x = str.length; i < x; i++) {
-        str[i] = str[i][0].toUpperCase() + str[i].substr(1);
     }
 
-    return str.join(" ");
+  }
+
+  generateChart() {
+    if (this.chart != null) {
+      this.chart.destroy()
+    }
+  
+    this.chart = new Chart(document.getElementById('scatter'), {
+      type: 'line',
+      data: {
+        datasets: [{
+          label: 'Historical sales',
+          type: 'scatter',
+          fill: false,
+          data: enrichData(this.response.salesHistory),
+          backgroundColor: "rgba(56, 128, 255, .7)",
+          borderColor: "transparent"
+        },
+        {
+          label: 'Trend',
+          type: 'line',
+          fill: false,
+          data: enrichData(this.response.trend),
+          backgroundColor: "rgba(218,83,79, .7)",
+          borderColor: "rgba(218,83,79, .7)",
+        }]
+      },
+      options: {
+        legend: {
+          display: false,
+          labels: {
+            padding: 30,
+            usePointStyle: true
+          }
+        },
+        scales: {
+          yAxes: [{
+            ticks: {
+              callback: function (value: number, index, values) {
+                return value.toLocaleString();
+              }
+            },
+            scaleLabel: {
+              display: true,
+              labelString: 'kr/m2',
+              padding: 0
+            }
+          }],
+          xAxes: [{
+            type: 'time',
+            position: 'bottom',
+            time: {
+              unit: 'year',
+              stepSize: 2,
+              max: new Date().getTime()
+            }
+          }]
+        }
+      }
+    })
+  }
+  
+}
+
+function capitalise(str) {
+  str = str.split(" ");
+
+  for (var i = 0, x = str.length; i < x; i++) {
+    str[i] = str[i][0].toUpperCase() + str[i].substr(1);
+  }
+
+  return str.join(" ");
 }
 
 function enrichData(salesHistory: any) {
