@@ -75,8 +75,9 @@ export class HomePage {
                 }
               },
               scaleLabel: {
-                display: false,
-                labelString: 'kr/m2'
+                display: true,
+                labelString: 'kr/m2',
+                padding: 0
               }
             }],
             xAxes: [{
