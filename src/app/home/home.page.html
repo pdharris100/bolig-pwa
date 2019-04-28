@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header class="main">
   <ion-toolbar color="primary">
     <ion-buttons slot="secondary">
       <ion-button>
@@ -13,8 +13,6 @@
   </ion-toolbar>
 </ion-header>
 
-<br>
-
 <ion-content>
   <div class="main">
     <form [formGroup]="address" (ngSubmit)="estimate()">
@@ -28,8 +26,8 @@
             </ion-col>
             <ion-col>
               <ion-label position="stacked"><b>Size in m<sup>2</sup></b> (Optional)</ion-label>
-              <ion-input placeholder="Not enabled" disabled type="text" autocapitalize="words" required=true
-                formControlName="street">
+              <ion-input placeholder="E.g. 78" type="text" autocapitalize="words" required=true
+                formControlName="area">
               </ion-input>
             </ion-col>
           </ion-row>
@@ -56,7 +54,7 @@
       <img id="img" src="../../assets/icon/calc.png" height="100%" />
       </button>
     </div> -->
-    
+
     </form>
 
     <div *ngIf="processing">
@@ -69,7 +67,8 @@
 
     <br>
     <ion-text color="primary">
-      <h1><b>{{price}} kr/m<sup>2</sup></b></h1>
+      <h1 *ngIf="address.value.area==''"><b>{{pricePerUnitArea.toLocaleString()}} kr/m<sup>2</sup></b></h1>
+      <h1 *ngIf="!address.value.area==''"><b>{{(pricePerUnitArea*address.value.area).toLocaleString()}} kr</b></h1>
     </ion-text>
     <br>
 
