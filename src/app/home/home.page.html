@@ -1,15 +1,23 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>
-      House Price Estimator
-    </ion-title>
+    <ion-buttons slot="secondary">
+      <ion-button>
+        <ion-icon color="primary" name="home"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="primary">
+      <ion-button>
+        <ion-icon color="primary" name="information-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
+
+<br>
 
 <ion-content>
   <div class="main">
     <form [formGroup]="address" (ngSubmit)="estimate()">
-      <br>
       <ion-item lines="none">
         <ion-grid>
           <ion-row>
@@ -20,7 +28,8 @@
             </ion-col>
             <ion-col>
               <ion-label position="stacked"><b>Size in m<sup>2</sup></b> (Optional)</ion-label>
-              <ion-input placeholder="Not enabled" disabled type="text" autocapitalize="words" required=true formControlName="street">
+              <ion-input placeholder="Not enabled" disabled type="text" autocapitalize="words" required=true
+                formControlName="street">
               </ion-input>
             </ion-col>
           </ion-row>
@@ -33,10 +42,10 @@
           </ion-row>
           <ion-row>
             <ion-col>
-            <ion-button size="large" expand="block" type="submit">
-              <ion-icon slot="start" name="refresh-circle"></ion-icon>
-              Estimate
-            </ion-button>
+              <ion-button size="large" expand="block" type="submit">
+                <ion-icon slot="start" name="refresh"></ion-icon>
+                Estimate
+              </ion-button>
             </ion-col>
           </ion-row>
         </ion-grid>
@@ -47,6 +56,7 @@
       <img id="img" src="../../assets/icon/calc.png" height="100%" />
       </button>
     </div> -->
+    
     </form>
 
     <div *ngIf="processing">
@@ -63,37 +73,8 @@
     </ion-text>
     <br>
 
-    <!-- <ion-list>
-    <ion-list-header>
-      <ion-label><b>Results</b></ion-label>
-    </ion-list-header>
-    <ion-item *ngFor="let result of results">
-      <ion-label position="stacked">Post Code: {{result.postcode}}</ion-label>
-      <ion-label position="stacked">Street: {{result.street}}</ion-label>
-      <ion-label position="stacked">Price: {{result.price}}</ion-label>
-      <ion-label position="stacked">Sales: {{result.number}}</ion-label>
-      <br>
-    </ion-item>
-  </ion-list> -->
+    <canvas id="scatter"></canvas>
 
-   <canvas id="scatter"></canvas>
-  
 
   </div>
 </ion-content>
-
-<ion-footer>
-  <ion-toolbar color="primary">
-      <ion-buttons slot="secondary">
-          <ion-button>
-            <ion-icon color="primary" name="home"></ion-icon>
-          </ion-button>
-          <ion-button>
-            <ion-icon color="primary" name="clock"></ion-icon>
-          </ion-button>
-          <ion-button>
-              <ion-icon color="primary" name="information-circle"></ion-icon>
-            </ion-button>
-        </ion-buttons>
-  </ion-toolbar>
-</ion-footer>

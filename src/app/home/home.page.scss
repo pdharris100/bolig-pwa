@@ -1,10 +1,10 @@
+ion-toolbar {
+    opacity: 0.7;
+}
+
 .main {
     max-width: 500px;
     margin: auto;
-}
-
-ion-title {
-    text-align: center
 }
 
 ion-input {
@@ -13,7 +13,13 @@ ion-input {
     border-radius: 5px;
   }
 
+ion-button {
+    --opacity: 0.7;
+}
+
+
   h1 {
+      font-size: 32px;
       text-align: center;
   }
 
