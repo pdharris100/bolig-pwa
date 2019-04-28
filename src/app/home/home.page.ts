@@ -15,6 +15,7 @@ export class HomePage {
   response: any;
   pricePerUnitArea: number = 0;
   processing: boolean = false;
+  chart: Chart;
 
   constructor(public estimatorService: RestService, private formBuilder: FormBuilder, public loadingController: LoadingController) {
     this.address = this.formBuilder.group({
@@ -27,17 +28,21 @@ export class HomePage {
   estimate() {
     this.processing = true;
 
-/*     if (document.getElementById('img').className == 'img1') {
-      document.getElementById('img').className = 'img2';
-    } else {
-      document.getElementById('img').className = 'img1';
-    } */
+    /*     if (document.getElementById('img').className == 'img1') {
+          document.getElementById('img').className = 'img2';
+        } else {
+          document.getElementById('img').className = 'img1';
+        } */
 
     this.estimatorService.estimate(this.address.value.postcode, this.address.value.street).then(data => {
       this.response = data;
       this.pricePerUnitArea = this.response.price;
- 
-      var chart = new Chart(document.getElementById('scatter'), {
+
+      if (this.chart != null) {
+        this.chart.destroy()
+      }
+
+      this.chart = new Chart(document.getElementById('scatter'), {
         type: 'line',
         data: {
           datasets: [{
@@ -60,6 +65,17 @@ export class HomePage {
             display: false
           },
           scales: {
+            yAxes: [{
+              ticks: {
+                callback: function (value: number, index, values) {
+                  return value.toLocaleString();
+                }
+              },
+              scaleLabel: {
+                display: false,
+                labelString: 'kr/m2'
+              }
+            }],
             xAxes: [{
               type: 'time',
               position: 'bottom',
@@ -67,7 +83,7 @@ export class HomePage {
                 unit: 'year',
                 stepSize: 2,
                 max: new Date().getTime()
-              }             
+              }
             }]
           }
         }

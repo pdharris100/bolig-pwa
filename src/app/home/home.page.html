@@ -1,4 +1,4 @@
-<ion-header class="main">
+<ion-header class="header">
   <ion-toolbar color="primary">
     <ion-buttons slot="secondary">
       <ion-button>
@@ -26,7 +26,7 @@
             </ion-col>
             <ion-col>
               <ion-label position="stacked"><b>Size in m<sup>2</sup></b> (Optional)</ion-label>
-              <ion-input placeholder="E.g. 78" type="text" autocapitalize="words" required=true
+              <ion-input placeholder="E.g. 78" type="text" inputmode="numeric" required=false
                 formControlName="area">
               </ion-input>
             </ion-col>
@@ -68,7 +68,7 @@
     <br>
     <ion-text color="primary">
       <h1 *ngIf="address.value.area==''"><b>{{pricePerUnitArea.toLocaleString()}} kr/m<sup>2</sup></b></h1>
-      <h1 *ngIf="!address.value.area==''"><b>{{(pricePerUnitArea*address.value.area).toLocaleString()}} kr</b></h1>
+      <h1 *ngIf="address.value.area!=''"><b>{{(pricePerUnitArea*address.value.area).toLocaleString()}} kr</b></h1>
     </ion-text>
     <br>
 
