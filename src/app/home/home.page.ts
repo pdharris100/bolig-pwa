@@ -88,7 +88,9 @@ export class HomePage {
           yAxes: [{
             ticks: {
               callback: function (value: number, index, values) {
-                return value.toLocaleString();
+                //return value.toLocaleString();
+                if (value==0) return 0;
+                return (value/1000) + "K";
               }
             },
             scaleLabel: {
