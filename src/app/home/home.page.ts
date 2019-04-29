@@ -12,6 +12,7 @@ import { Chart } from 'chart.js';
 export class HomePage {
 
   address: FormGroup;
+  requestStreet: string = '';
   response: any;
   pricePerUnitArea: number = 0;
   processing: boolean = false;
@@ -30,6 +31,7 @@ export class HomePage {
     this.processing = true;
     var st: string = this.address.value.street;
     st = st.trim();
+    
 
     /*     if (document.getElementById('img').className == 'img1') {
           document.getElementById('img').className = 'img2';
@@ -38,11 +40,13 @@ export class HomePage {
         } */
 
     try {
-      this.estimatorService.estimate(this.address.value.postcode, capitalise(st)).then(data => {
+      var street: string = capitalise(st);
+      this.estimatorService.estimate(this.address.value.postcode, street).then(data => {
         this.response = data;
         this.pricePerUnitArea = this.response.price;
         this.generateChart();
         console.log(this.response);
+        this.requestStreet = street;
         this.processing = false;
       })
     } catch (err) {

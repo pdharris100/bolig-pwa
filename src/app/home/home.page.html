@@ -53,39 +53,50 @@
       <button class="button button-img" type="submit">
       <img id="img" src="../../assets/icon/calc.png" height="100%" />
       </button>
-    </div> -->
+    -->
 
     </form>
 
     <div>
       <ion-progress-bar *ngIf="processing" type="indeterminate" color="primary"></ion-progress-bar>
-      <ion-progress-bar *ngIf="!processing"></ion-progress-bar>
+      <ion-progress-bar *ngIf="!processing" color="primary"></ion-progress-bar>
     </div>
 
-<ion-grid>
-  <ion-row>
-    <ion-col>
-      <ion-text>
-          <h3><b>{{address.value.street}}</b></h3>
-      </ion-text>
-    </ion-col>
-    <ion-col>
-      <ion-text>
-        <h4><b>{{address.value.area}} m<sup>2</sup></b></h4>
-      </ion-text>
-    </ion-col>
-  </ion-row>
-</ion-grid>
+    <div class="result-title-div">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-text color="primary">
+              <p class="result-title-street-text"><b>{{requestStreet}}</b></p>
+            </ion-text>
+          </ion-col>
+          <ion-col color="primary">
+            <ion-text color="primary">
+              <p class="result-title-area-text" *ngIf="requestStreet!='' && address.value.area!=''">
+                <b>{{address.value.area}} m<sup>2</sup></b></p>
+              <p class="result-title-area-text" *ngIf="requestStreet==''"></p>
+            </ion-text>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
 
-    <ion-text color="primary">
-      <h1 *ngIf="address.value.area==''"><b>{{pricePerUnitArea.toLocaleString()}} kr/m<sup>2</sup></b></h1>
-      <div *ngIf="address.value.area!=''">
-        <h1><b>{{(pricePerUnitArea*address.value.area).toLocaleString()}} kr</b></h1>
-        <h2><b>@ {{pricePerUnitArea.toLocaleString()}} kr/m<sup>2</sup></b></h2>
-      </div>
-    </ion-text>
+    <div class="result-body-div">
+      <ion-text color="primary">
+        <p class="result-text" color="primary" *ngIf="address.value.area==''"><b>{{pricePerUnitArea.toLocaleString()}}
+            kr/m<sup>2</sup></b></p>
+        <div *ngIf="address.value.area!=''">
+          <p class="result-text" color="primary"><b>{{(pricePerUnitArea*address.value.area).toLocaleString()}} kr</b>
+          </p>
+          <p class="result-text-subscript" color="primary"><b>@ {{pricePerUnitArea.toLocaleString()}}
+              kr/m<sup>2</sup></b></p>
+        </div>
+      </ion-text>
+    </div>
 
-    <canvas id="scatter"></canvas>
+    <div>
+      <canvas id="scatter"></canvas>
+    </div>
 
 
   </div>

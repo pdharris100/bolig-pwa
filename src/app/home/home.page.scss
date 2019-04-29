@@ -1,3 +1,7 @@
+p {
+  margin: 0;
+}
+
 ion-header {
     max-width: 1000px;
     margin: auto;
@@ -23,28 +27,37 @@ ion-button {
     --opacity: 0.8;
 }
 
-
-  h1 {
-      font-size: 32px;
-      text-align: center;
-  }
-
-  h2 {
-    font-size: 16px;
-    text-align: center;
-    margin-top: 0px
+.result-title-div {
+  height: 39px;
 }
 
-h3 {
+.result-title-street-text {
   font-size: 16px;
   text-align: left;
   margin-top: 0px
 }
 
-h4 {
+.result-title-area-text {
   font-size: 16px;
   text-align: right;
   margin-top: 0px
+}
+
+.result-body-div {
+  height: 63px;
+}
+
+  .result-text {
+    text-align: center;
+    font-size: 32px;      
+    margin-top: 0px;
+    margin-bottom: 2px;
+  }
+
+  .result-text-subscript {
+    text-align: center;
+    font-size: 16px;
+    margin-top: 0px
 }
 
   #scatter {
