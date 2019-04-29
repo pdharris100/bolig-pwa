@@ -64,7 +64,7 @@ export class HomePage {
       type: 'line',
       data: {
         datasets: [{
-          label: 'Historical sales',
+          label: 'Sales price per square metre',
           type: 'scatter',
           fill: false,
           data: enrichData(this.response.salesHistory),
