@@ -95,7 +95,9 @@ export class HomePage {
                 //return value.toLocaleString();
                 if (value==0) return 0;
                 return (value/1000) + "K";
-              }
+              },
+              beginAtZero: true,
+              max: 100000
             },
             scaleLabel: {
               display: true,
