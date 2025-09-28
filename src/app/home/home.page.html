@@ -2,12 +2,12 @@
   <ion-toolbar color="primary">
     <ion-title>Home</ion-title>
     <ion-buttons slot="start">
-      <ion-button [routerLink]="['/home']">
+      <ion-button routerLink="/home">
         <ion-icon slot="icon-only" color="light" size="large" name="home"></ion-icon>
       </ion-button>
     </ion-buttons>
     <ion-buttons slot="end">
-      <ion-button [routerLink]="['/about']">
+      <ion-button routerLink="/about">
         <ion-icon slot="icon-only" color="light" size="large" name="information-circle-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -21,19 +21,19 @@
         <ion-grid>
           <ion-row>
             <ion-col>
-              <ion-label position="stacked"><b>Post Code</b></ion-label>
+              <ion-label position="stacked" class="ion-text-bold">Post Code</ion-label>
               <ion-input placeholder="E.g. 1256" type="text" inputmode="numeric" maxlength=4 minlength=4 required=true
                 formControlName="postcode"></ion-input>
             </ion-col>
             <ion-col>
-              <ion-label position="stacked"><b>Size in m<sup>2</sup></b> (Optional)</ion-label>
+              <ion-label position="stacked" class="ion-text-bold">Size in m<sup>2</sup> (Optional)</ion-label>
               <ion-input placeholder="E.g. 78" type="text" inputmode="numeric" required=false formControlName="area">
               </ion-input>
             </ion-col>
           </ion-row>
           <ion-row>
             <ion-col>
-              <ion-label position="stacked"><b>Street</b></ion-label>
+              <ion-label position="stacked" class="ion-text-bold">Street</ion-label>
               <ion-input placeholder="E.g. Amaliegade" type="text" autocapitalize="sentences" required=true
                 formControlName="street"></ion-input>
             </ion-col>
@@ -67,29 +67,28 @@
         <ion-row>
           <ion-col>
             <ion-text color="primary">
-              <p class="result-title-street-text"><b>{{requestStreet}}</b></p>
+              <p class="result-title-street-text ion-text-bold">{{requestStreet}}</p>
             </ion-text>
           </ion-col>
           <ion-col color="primary">
             <ion-text color="primary">
               <p class="result-title-area-text" *ngIf="requestStreet!='' && address.value.area!=''">
-                <b>{{address.value.area}} m<sup>2</sup></b></p>
+                <span class="ion-text-bold">{{address.value.area}} m<sup>2</sup></span></p>
               <p class="result-title-area-text" *ngIf="requestStreet==''"></p>
             </ion-text>
           </ion-col>
         </ion-row>
       </ion-grid>
     </div>
-
+ 
     <div class="result-body-div">
       <ion-text color="primary">
-        <p class="result-text" color="primary" *ngIf="address.value.area==''"><b>{{pricePerUnitArea.toLocaleString()}}
-            kr/m<sup>2</sup></b></p>
+        <p class="result-text" color="primary" *ngIf="address.value.area==''"><span
+            class="ion-text-bold">{{pricePerUnitArea.toLocaleString()}} kr/m<sup>2</sup></span></p>
         <div *ngIf="address.value.area!=''">
-          <p class="result-text" color="primary"><b>{{(pricePerUnitArea*address.value.area).toLocaleString()}} kr</b>
-          </p>
-          <p class="result-text-subscript" color="primary"><b>@ {{pricePerUnitArea.toLocaleString()}}
-              kr/m<sup>2</sup></b></p>
+          <p class="result-text ion-text-bold" color="primary">{{(pricePerUnitArea*address.value.area).toLocaleString()}} kr</p>
+          <p class="result-text-subscript ion-text-bold" color="primary">@ {{pricePerUnitArea.toLocaleString()}}
+            kr/m<sup>2</sup></p>
         </div>
       </ion-text>
     </div>

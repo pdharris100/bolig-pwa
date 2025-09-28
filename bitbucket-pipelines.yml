@@ -2,8 +2,8 @@
 # Check our guides at https://confluence.atlassian.com/x/14UWN for more examples.
 # Only use spaces to indent your .yml configuration.
 # -----
-# You can specify a custom docker image from Docker Hub as your build environment.
-image: beevelop/ionic:latest
+# You can specify a custom docker image from Docker Hub as your build environment. Pinning to a specific version is recommended for reproducible builds.
+image: beevelop/ionic:6.13.1-node16
 
 pipelines:
   default:
